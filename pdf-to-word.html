@@ -11,8 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_AD_CLIENT_ID" crossorigin="anonymous"></script>
     <style>
         /* Global Styles */
         body {
@@ -111,12 +109,6 @@
             transform: scale(1.05);
         }
 
-        /* Ad Container */
-        .ad-container {
-            margin: 20px auto;
-            text-align: center;
-        }
-
         /* Footer */
         footer {
             background: #333;
@@ -141,21 +133,6 @@
 
     <!-- Main Content -->
     <main>
-        <!-- AdSense Ad (Top of Page) -->
-        <div class="ad-container">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_AD_CLIENT_ID" crossorigin="anonymous"></script>
-            <!-- Responsive Ad Unit -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-YOUR_AD_CLIENT_ID"
-                 data-ad-slot="YOUR_AD_SLOT_ID"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-
         <div class="upload-section">
             <h2>Upload Your PDF File</h2>
             <input type="file" id="pdfFile" accept="application/pdf">
@@ -166,21 +143,6 @@
         <div class="download-section" id="downloadSection" style="display: none;">
             <h2>Your File is Ready!</h2>
             <a id="downloadLink" download>Download Word File</a>
-        </div>
-
-        <!-- AdSense Ad (Bottom of Page) -->
-        <div class="ad-container">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_AD_CLIENT_ID" crossorigin="anonymous"></script>
-            <!-- Responsive Ad Unit -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-YOUR_AD_CLIENT_ID"
-                 data-ad-slot="YOUR_AD_SLOT_ID"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
         </div>
     </main>
 
@@ -195,18 +157,49 @@
         const downloadSection = document.getElementById('downloadSection');
         const downloadLink = document.getElementById('downloadLink');
 
-        pdfFileInput.addEventListener('change', function (event) {
+        // API Endpoint (Replace with your API endpoint)
+        const apiUrl = 'https://api.example.com/convert-pdf-to-word';
+
+        pdfFileInput.addEventListener('change', async function (event) {
             const file = event.target.files[0];
             if (file && file.type === 'application/pdf') {
-                // Simulate conversion process (for demonstration purposes)
-                setTimeout(() => {
-                    // Show download section
-                    downloadSection.style.display = 'block';
+                // Show loading message
+                downloadSection.style.display = 'block';
+                downloadLink.innerText = 'Converting...';
 
-                    // Set download link (replace with actual converted file URL)
-                    downloadLink.href = '#'; // Replace with the actual Word file URL
+                // Prepare form data
+                const formData = new FormData();
+                formData.append('file', file);
+
+                try {
+                    // Send file to API
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Authorization': 'Bearer YOUR_API_KEY', // Add API key if required
+                        },
+                    });
+
+                    // Log the response for debugging
+                    console.log('API Response:', response);
+
+                    if (!response.ok) {
+                        throw new Error('Conversion failed. Please try again.');
+                    }
+
+                    // Get the converted file
+                    const blob = await response.blob();
+                    const url = URL.createObjectURL(blob);
+
+                    // Update download link
+                    downloadLink.href = url;
                     downloadLink.innerText = 'Download Word File';
-                }, 2000); // Simulate a 2-second delay for conversion
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert(error.message);
+                    downloadSection.style.display = 'none';
+                }
             } else {
                 alert('Please upload a valid PDF file.');
             }
