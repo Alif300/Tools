@@ -284,30 +284,40 @@
     <section id="tools" class="fade-in">
         <h2>Our Tools</h2>
         <div class="tool-cards">
+            <!-- Image Compressor Tool -->
+            <div class="tool-card">
+    <i class="fas fa-compress"></i>
+    <h3>Image Compressor</h3>
+    <p>Compress images without losing quality.</p>
+    <a href="/Tools/img-compress.html" class="btn" target="_blank">Use Tool</a>
+</div>
+
+            <!-- Background Remover Tool -->
+            <div class="tool-card">
+                <i class="fas fa-magic"></i>
+                <h3>Background Remover</h3>
+                <p>Remove backgrounds from images effortlessly.</p>
+            </div>
+
+            <!-- PDF Compressor Tool -->
             <div class="tool-card">
                 <i class="fas fa-file-pdf"></i>
                 <h3>PDF Compressor</h3>
                 <p>Reduce the size of your PDF files.</p>
             </div>
+
+            <!-- PDF to Word Tool -->
             <div class="tool-card">
                 <i class="fas fa-file-export"></i>
                 <h3>PDF to Word</h3>
                 <p>Convert PDFs to editable Word documents.</p>
             </div>
+
+            <!-- Word to PDF Tool -->
             <div class="tool-card">
                 <i class="fas fa-file-import"></i>
                 <h3>Word to PDF</h3>
                 <p>Convert Word documents to PDFs.</p>
-            </div>
-            <div class="tool-card">
-                <i class="fas fa-image"></i>
-                <h3>Image Compressor</h3>
-                <p>Compress images without losing quality.</p>
-            </div>
-            <div class="tool-card">
-                <i class="fas fa-magic"></i>
-                <h3>Background Remover</h3>
-                <p>Remove the background from images.</p>
             </div>
         </div>
     </section>
@@ -347,14 +357,6 @@
 
         fadeInElements.forEach((element) => {
             observer.observe(element);
-        });
-    </script>
-
-    <!-- Background Removal Script -->
-    <script>
-        const bgRemoverCard = document.querySelector('.tool-card:nth-child(5)');
-        bgRemoverCard.addEventListener('click', () => {
-            window.location.href = 'bg-remover.html'; // Redirect to the background remover tool
         });
     </script>
 </body>
