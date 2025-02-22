@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Convert PDF files to editable Word documents easily and for free.">
+    <meta name="keywords" content="PDF to Word, convert PDF, online PDF tools">
+    <meta name="author" content="Your Name">
+    <title>PDF to Word - Tools Website</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_AD_CLIENT_ID" crossorigin="anonymous"></script>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        header p {
+            font-size: 1rem;
+            margin: 10px 0 0;
+        }
+
+        /* Main Content */
+        main {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .upload-section {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .upload-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .upload-section input[type="file"] {
+            display: none;
+        }
+
+        .upload-section label {
+            background: #2575fc;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .upload-section label:hover {
+            background: #1a5bbf;
+        }
+
+        .upload-section p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 20px;
+        }
+
+        .download-section {
+            margin-top: 30px;
+        }
+
+        .download-section a {
+            background: #ff6f61;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .download-section a:hover {
+            background: #ff4a3d;
+            transform: scale(1.05);
+        }
+
+        /* Ad Container */
+        .ad-container {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>PDF to Word Converter</h1>
+        <p>Convert your PDF files to editable Word documents easily.</p>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- AdSense Ad (Top of Page) -->
+        <div class="ad-container">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_AD_CLIENT_ID" crossorigin="anonymous"></script>
+            <!-- Responsive Ad Unit -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_AD_CLIENT_ID"
+                 data-ad-slot="YOUR_AD_SLOT_ID"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <div class="upload-section">
+            <h2>Upload Your PDF File</h2>
+            <input type="file" id="pdfFile" accept="application/pdf">
+            <label for="pdfFile">Choose PDF File</label>
+            <p>Supported formats: PDF</p>
+        </div>
+
+        <div class="download-section" id="downloadSection" style="display: none;">
+            <h2>Your File is Ready!</h2>
+            <a id="downloadLink" download>Download Word File</a>
+        </div>
+
+        <!-- AdSense Ad (Bottom of Page) -->
+        <div class="ad-container">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_AD_CLIENT_ID" crossorigin="anonymous"></script>
+            <!-- Responsive Ad Unit -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_AD_CLIENT_ID"
+                 data-ad-slot="YOUR_AD_SLOT_ID"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Tools Website. All rights reserved.</p>
+    </footer>
+
+    <!-- PDF to Word Conversion Script -->
+    <script>
+        const pdfFileInput = document.getElementById('pdfFile');
+        const downloadSection = document.getElementById('downloadSection');
+        const downloadLink = document.getElementById('downloadLink');
+
+        pdfFileInput.addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file && file.type === 'application/pdf') {
+                // Simulate conversion process (for demonstration purposes)
+                setTimeout(() => {
+                    // Show download section
+                    downloadSection.style.display = 'block';
+
+                    // Set download link (replace with actual converted file URL)
+                    downloadLink.href = '#'; // Replace with the actual Word file URL
+                    downloadLink.innerText = 'Download Word File';
+                }, 2000); // Simulate a 2-second delay for conversion
+            } else {
+                alert('Please upload a valid PDF file.');
+            }
+        });
+    </script>
+</body>
+</html>
