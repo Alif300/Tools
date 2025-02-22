@@ -300,10 +300,15 @@
                 <p>Convert Word documents to PDFs.</p>
             </div>
             <div class="tool-card">
-    <i class="fas fa-image"></i>
-    <h3><a href="/Tools/img-compress.html" target="_blank">Image Compressor</a></h3>
-    <p>Compress images without losing quality.</p>
-</div>
+                <i class="fas fa-image"></i>
+                <h3>Image Compressor</h3>
+                <p>Compress images without losing quality.</p>
+            </div>
+            <div class="tool-card">
+                <i class="fas fa-magic"></i>
+                <h3>Background Remover</h3>
+                <p>Remove the background from images.</p>
+            </div>
         </div>
     </section>
 
@@ -342,6 +347,14 @@
 
         fadeInElements.forEach((element) => {
             observer.observe(element);
+        });
+    </script>
+
+    <!-- Background Removal Script -->
+    <script>
+        const bgRemoverCard = document.querySelector('.tool-card:nth-child(5)');
+        bgRemoverCard.addEventListener('click', () => {
+            window.location.href = 'bg-remover.html'; // Redirect to the background remover tool
         });
     </script>
 </body>
